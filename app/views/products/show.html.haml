@@ -83,7 +83,7 @@
 
   - if user_signed_in?
     - if current_user.id != @product.seller.id
-      = form_with url: purchase_product_path, method: :post, local: true do |f|
+      = form_with url: purchase_index_path, method: :post, local: true do |f|
         = f.number_field :product_id, type: "hidden", value: "#{@product.id}"
         - if @product.buyer_id.nil?
           = f.submit "購入画面に進む", {class: "item-main__price__buy-btn"}
