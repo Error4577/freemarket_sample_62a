@@ -3,6 +3,7 @@ class PurchaseController < ApplicationController
   require 'payjp'
 
   def confirm
+    # 決済完了まで行わなかった場合に溜まったsessionをリセット
     session[:product_id].clear if session[:product_id] != params[:product_id] && params[:product_id].present?
     card = Card.where(user_id: current_user.id).first
     # binding.pry
@@ -48,6 +49,7 @@ class PurchaseController < ApplicationController
   def done
     @product = Product.find(params[:product_id])
     @address = Address.where(user_id: current_user.id).first
+    # セッションのリセット
     session[:product_id].clear
     card_info
   end
