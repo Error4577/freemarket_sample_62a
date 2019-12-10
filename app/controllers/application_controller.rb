@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-  # include CommonActions
-  # before_action :set_categories
   before_action :basic_auth, if: :production?
   before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
