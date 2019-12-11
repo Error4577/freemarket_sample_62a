@@ -6,6 +6,6 @@ module ApplicationHelper
     else
       options[:class] = "lazyload #{options[:class]}"
     end
-    image_tag("画像を読み込んでない時の軽い画像", options) + ("<noscript>#{image_tag(source, options)}</noscript>").html_safe
+    image_tag("ajax-loader.gif", options) + ("<noscript>#{image_tag(source, options)}</noscript>").html_safe
   end
 end
