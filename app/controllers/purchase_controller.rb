@@ -4,16 +4,17 @@ class PurchaseController < ApplicationController
 
   def confirm
     # 決済完了まで行わなかった場合に溜まったsessionをリセット
-    session[:product_id].clear if session[:product_id] != params[:product_id] && params[:product_id].present?
+    session[:product_id] = params[:product_id] if params[:product_id].present?
+    # session[:product_id].clear if session[:product_id] != params[:product_id] && params[:product_id].present?
     card = Card.where(user_id: current_user.id).first
     # binding.pry
     if card.blank?
-      session[:product_id] = params[:product_id]
+      # session[:product_id] = params[:product_id]
       # binding.pry
       redirect_to card_registration_mypages_path
     else
       # binding.pry
-      session[:product_id] = params[:product_id] if session[:product_id].blank?
+      # session[:product_id] = params[:product_id] if session[:product_id].blank?
       @product = Product.find(session[:product_id])
       @address = Address.where(user_id: current_user.id).first  
       card_info
