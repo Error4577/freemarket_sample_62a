@@ -1,3 +1,79 @@
+$(function(){
+  // childrenカテゴリのhtml作成
+  function buildCategoryList_Children(category_children, selected_category_root){
+    category_children.forEach(function(children) {
+      // console.log(`#${selected_category_root}`)
+      $(`#${selected_category_root}`).append(buildCategoryBox_children(children));
+    });
+
+    function buildCategoryBox_children(children){
+      var optionHtmlChild = `<li class="header__menu-box--left__children__child" value="${children.id}">
+                               <a href="#">${children.name}</a>
+                               <ul class="header__menu-box--left__grand-children" id="${children.id}"></ul>
+                             </li>`
+      return optionHtmlChild;
+    };
+  };
+  // grandchildrenカテゴリのhtml作成
+  function buildCategoryList_GrandChildren(category_grandchildren, selected_category_children){
+    category_grandchildren.forEach(function(grandchildren) {
+      $(`#${selected_category_children}`).append(buildCategoryBox_grandchildren(grandchildren));
+    });
+
+    function buildCategoryBox_grandchildren(grandchildren){
+      var optionHtmlGrandchild = `<li class="header__menu-box--left__grand-children__grand-child">
+                                    <a href="#">${grandchildren.name}</a>
+                                  </li>`
+      return optionHtmlGrandchild;
+    };
+  };
+
+  // rootカテゴリにmouseenterで発火
+  $(document).on("mouseenter",".header__menu-box--left__parents__parent", function(e) {
+    // $(".header__menu-box--left__children").empty();
+    var selected_category_root = $(this).val();
+    $.ajax({
+      url: "/products/get_category_children",
+      type: "GET",
+      data: {root_category_id: selected_category_root},
+      dataType: "json"
+    })
+    .done(function(category_children){
+      buildCategoryList_Children(category_children, selected_category_root);
+    })
+    .fail(function(){
+      console.log('error');
+    })
+
+  });
+  // childrenカテゴリにmouseenterで発火
+  $(document).on("mouseenter",".header__menu-box--left__children__child", function(e) {
+    // $(".header__menu-box--left__grand-children").empty();
+    var selected_category_children = $(this).val();
+    $.ajax({
+      url: "/products/get_category_grandchildren",
+      type: "GET",
+      data: {child_category_id: selected_category_children},
+      dataType: "json"
+    })
+    .done(function(category_grandchildren){
+      buildCategoryList_GrandChildren(category_grandchildren, selected_category_children);
+    })
+    .fail(function(){
+      console.log('error');
+    })
+
+  });
+
+  $(document).on("mouseleave",".header__menu-box--left__parents__parent", function(e) {
+    $(".header__menu-box--left__children__child").remove();
+  }).on("mouseleave",".header__menu-box--left__children__child", function(e) {
+    $(".header__menu-box--left__grand-children__grand-child").remove();
+  });
+
+
+
+})
 // $(function(){
 
 //   function buildCategoryList_Root(category_roots){
@@ -44,23 +120,23 @@
 
 
 
-//   //header__content__categoryにホバーしたら発火
-//   $(document).on("mouseover",".category__select", function(e) {
-//     $.ajax({
-//       url: "/products/get_category_roots",
-//       type: "GET",
-//       dataType: "json"
-//     })
-//     .done(function(category_roots){
-//       //ajax成功時ルートカテゴリのリストを表示する関数を呼び出す
-//       buildCategoryList_Root(category_roots);
-//     })
-//     .fail(function(){
-//       console.log('error');
-//     })
+  // //header__content__categoryにホバーしたら発火
+  // $(document).on("mouseover",".category__select", function(e) {
+  //   $.ajax({
+  //     url: "/products/get_category_roots",
+  //     type: "GET",
+  //     dataType: "json"
+  //   })
+  //   .done(function(category_roots){
+  //     //ajax成功時ルートカテゴリのリストを表示する関数を呼び出す
+  //     buildCategoryList_Root(category_roots);
+  //   })
+  //   .fail(function(){
+  //     console.log('error');
+  //   })
 
-//     // カテゴリー選択後に、対応するリストを表示させる関数
-//   });
+  //   // カテゴリー選択後に、対応するリストを表示させる関数
+  // });
 
 
 //   $(document).on("mouseover","#product_root_category_id", function(e) {
