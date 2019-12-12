@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
 
   def set_categories
     @parents = Category.roots.all
+    # binding.pry
   end
   
   private
