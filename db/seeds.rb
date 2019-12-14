@@ -2,26 +2,56 @@ require "csv"
 
 #ユーザー生成
 
-User.create(nickname:         "出品用アカウント",
-            password:         "1234abcd",
-            email:            "hoge@hoge.com",
-            date_of_birth:    "1996-11-20",
-            last_name:        "てすと",
-            first_name:       "たろう",
-            last_name_kana:   "テスト",
-            first_name_kana:  "タロウ",
-            phone_number:     "12312341234"
+@seller = User.create(
+  nickname:         "出品用アカウント",
+  password:         "1234abcd",
+  email:            "hoge@hoge.com",
+  date_of_birth:    "1996-11-20",
+  last_name:        "てすと",
+  first_name:       "たろう",
+  last_name_kana:   "テスト",
+  first_name_kana:  "タロウ",
+  phone_number:     "12312341234"
 )
 
-User.create(nickname:         "購入用アカウント",
-            password:         "1234abcd",
-            email:            "fuga@fuga.com",
-            date_of_birth:    "1996-11-20",
-            last_name:        "てすと",
-            first_name:       "たろう",
-            last_name_kana:   "テスト",
-            first_name_kana:  "タロウ",
-            phone_number:     "12312341234"
+@seller_address = Address.create(
+  user:             @seller,
+  last_name:        "たろう",
+  first_name:       "ほげ",
+  last_name_kana:   "タロウ",
+  first_name_kana:  "ホゲ",
+  postal_code:      "1231234",
+  prefecture:       1,
+  city_name:        "ほげ市",
+  block_number:     "ふが番地",
+  building_name:    "ぴよビル",
+  phone_number:     "12312341234"
+)
+
+@buyer = User.create(
+  nickname:         "購入用アカウント",
+  password:         "1234abcd",
+  email:            "fuga@fuga.com",
+  date_of_birth:    "1996-11-20",
+  last_name:        "てすと",
+  first_name:       "たろう",
+  last_name_kana:   "テスト",
+  first_name_kana:  "タロウ",
+  phone_number:     "12312341234"
+)
+
+@buyer_address = Address.create(
+  user:             @buyer,
+  last_name:        "じろう",
+  first_name:       "ほげ",
+  last_name_kana:   "ジロウ",
+  first_name_kana:  "ホゲ",
+  postal_code:      "1231234",
+  prefecture:       47,
+  city_name:        "ほげ市",
+  block_number:     "ふが番地",
+  building_name:    "ぴよビル",
+  phone_number:     "12312341234"
 )
 
 i = 0
