@@ -6,6 +6,15 @@ class Product < ApplicationRecord
   belongs_to :size
   has_many_attached :images
 
+  validate :image_presence
+
+  def image_presence
+    if images.attached?
+    else
+      errors.add(:images, 'ファイルを添付してください')
+    end
+  end
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture, class_name: "Prefecture", foreign_key: "shipping_area"
   belongs_to_active_hash :ship_date, class_name: "Shipping_date", foreign_key: "shipping_date"
