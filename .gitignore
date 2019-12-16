@@ -33,6 +33,7 @@
 
 # app/assets/images/product_images/*
 # public/images/*
+git rm --cached <FILE_NAME>
 *
 !/_header.html.haml
 !/products.scss
