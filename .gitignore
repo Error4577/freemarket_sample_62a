@@ -33,3 +33,8 @@
 
 app/assets/images/product_images/*
 public/images/*
+
+app/assets/javascripts/payjp.js
+app/assets/images
+db/
+config/
