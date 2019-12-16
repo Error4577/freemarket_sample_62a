@@ -131,6 +131,7 @@
                     color: white;
                   }
                   .header__menu-box--left__children {
+                    width: 220px;
                     &__child {
                       display: block;
                       height: 30px;
@@ -160,6 +161,7 @@
                     &:hover {
                       color: blue;
                       .header__menu-box--left__grand-children {
+                        width: 300px;
                         &__grand-child {
                           display: block;
                           height: 30px;
@@ -1327,6 +1329,30 @@
                     vertical-align: top;
                     width: 100%;
                     z-index: 1;
+                  }
+                  .product-box__sold-out div{
+                    position: absolute;
+                    top: 15px;
+                    left: 0;
+                    z-index: 2;
+                    color: #fff;
+                    -webkit-transform: rotate(-45deg);
+                    transform: rotate(-45deg);
+                    letter-spacing: 2px;
+                    font-weight: 600;
+                  }
+                  .product-box__sold-out:after{
+                    border-width: 65px 65px 0 0;
+                    border-color: #ea352d transparent transparent transparent;
+                    display: block;
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 1;
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
                   }
                 }
               }
