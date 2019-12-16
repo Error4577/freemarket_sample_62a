@@ -38,3 +38,4 @@ app/assets/javascripts/payjp.js
 app/assets/images
 db/
 config/
+.gitignore
