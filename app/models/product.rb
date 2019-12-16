@@ -11,4 +11,13 @@ class Product < ApplicationRecord
   belongs_to_active_hash :ship_date, class_name: "Shipping_date", foreign_key: "shipping_date"
   belongs_to_active_hash :ship_cost, class_name: "Shipping_cost", foreign_key: "shipping_cost"
   belongs_to_active_hash :item_condition, class_name: "Condition", foreign_key: "condition"
+
+  def validate_images
+    return unless images.attached?
+
+  end
+
+  def image?
+    %w[image/jpg image/jpeg image/gif image/png].include?(image.blob.content_type)
+  end
 end
