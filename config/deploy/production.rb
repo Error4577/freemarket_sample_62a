@@ -1,3 +1,5 @@
+server '3.114.63.164', user: 'ec2-user', roles: %w{app db web}
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
@@ -59,7 +61,7 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
-server '18.176.175.55', user: 'ec2-user', roles: %w{app db web}
+server '3.114.63.164', user: 'ec2-user', roles: %w{app db web}
 
 set :rails_env, "production"
 set :unicorn_rack_env, "production"
